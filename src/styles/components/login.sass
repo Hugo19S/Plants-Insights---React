@@ -68,11 +68,12 @@
     margin-right: 4px
 
 .recall-forget a, .signup-link p a
-    color: #fff
+    color: #ff7f00
     text-decoration: none
-
+    text-shadow: #232323
     &:hover
         text-decoration: underline
+        color: variables.$theme-color2
 
 .container-Login button
     width: 100%
@@ -94,5 +95,11 @@
     margin: 20px 0 15px
     text-shadow: none
     color: #fff
-    
 
+.container-Login .input-field input.invalidForm
+    border: 1px solid red
+
+.fill-in-fields
+    font-size: variables.$font16px
+    margin: -15px 0 15px
+    color: #ff4545

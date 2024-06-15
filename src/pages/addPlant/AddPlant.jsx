@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./../../styles/components/addPlant.sass";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import PostPlant from "../../API/PostPlant";
 
-function validateForm() { //valida os campos do formulario
+function validateForm() {
+  //valida os campos do formulario
   // Resetar estilos
   var formElements = document.querySelectorAll(
     "#plantForm .form-control, #plantForm .form-control-file"
@@ -55,7 +56,6 @@ function submitForm(event, navigate) {
     }
   }
 
-
   if (validateForm()) {
     Swal.fire({
       title: "Tens certeza que deseja gravar?",
@@ -89,88 +89,110 @@ function submitForm(event, navigate) {
 
 function AddPlant() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    // Verifica se há informações do usuário no localStorage
+    const storedUser = localStorage.getItem("sessionUser");
+    if (storedUser) {
+      setUsername(storedUser);
+    }
+  }, []);
 
   return (
     <div className="AddPlantPage">
-      <div className="add-plant col-md-6">
-        <h2 className="text-center">Adicionar planta</h2>
+      {username ? (
+        <div className="add-plant col-md-6">
+          <h2 className="text-center">Adicionar planta</h2>
 
-        <form onSubmit={(event) => submitForm(event, navigate)} id="plantForm">
-          <div className="form-group mb-3">
-            <label for="botanicalName">Nome botânico</label>
-            <input type="text" className="form-control" id="botanicalName" />
-          </div>
+          <form
+            onSubmit={(event) => submitForm(event, navigate)}
+            id="plantForm"
+          >
+            <div className="form-group mb-3">
+              <label for="botanicalName">Nome botânico</label>
+              <input type="text" className="form-control" id="botanicalName" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="plantName">Nome da planta</label>
-            <input type="text" className="form-control" id="plantName" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="plantName">Nome da planta</label>
+              <input type="text" className="form-control" id="plantName" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="flowerColor">Cor da flor</label>
-            <input type="text" className="form-control" id="flowerColor" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="flowerColor">Cor da flor</label>
+              <input type="text" className="form-control" id="flowerColor" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="foodNutrients">Nutrientes alimentares</label>
-            <input type="text" className="form-control" id="foodNutrients" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="foodNutrients">Nutrientes alimentares</label>
+              <input type="text" className="form-control" id="foodNutrients" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="nativeRegion">Região nativa</label>
-            <input type="text" className="form-control" id="nativeRegion" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="nativeRegion">Região nativa</label>
+              <input type="text" className="form-control" id="nativeRegion" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="growthHabits">Crescimento</label>
-            <input type="text" className="form-control" id="growthHabits" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="growthHabits">Crescimento</label>
+              <input type="text" className="form-control" id="growthHabits" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="waterRequirements">Necessidades de água</label>
-            <input
-              type="text"
-              className="form-control"
-              id="waterRequirements"
-            />
-          </div>
+            <div className="form-group mb-3">
+              <label for="waterRequirements">Necessidades de água</label>
+              <input
+                type="text"
+                className="form-control"
+                id="waterRequirements"
+              />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="companionPlants">Plantas de companhia</label>
-            <input type="text" className="form-control" id="companionPlants" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="companionPlants">Plantas de companhia</label>
+              <input
+                type="text"
+                className="form-control"
+                id="companionPlants"
+              />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="bloomingTimes">Tempos de floração</label>
-            <input type="text" className="form-control" id="bloomingTimes" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="bloomingTimes">Tempos de floração</label>
+              <input type="text" className="form-control" id="bloomingTimes" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="plantHeight">Altura da planta</label>
-            <input type="text" className="form-control" id="plantHeight" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="plantHeight">Altura da planta</label>
+              <input type="text" className="form-control" id="plantHeight" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="description">Descrição</label>
-            <textarea rows="3" className="form-control" id="description" />
-          </div>
+            <div className="form-group mb-3">
+              <label for="description">Descrição</label>
+              <textarea rows="3" className="form-control" id="description" />
+            </div>
 
-          <div className="form-group mb-3">
-            <label for="imageUrl">Imagem</label>
-            <br />
-            <input
-              type="file"
-              className="form-control-file"
-              id="imageUrl"
-              accept="image/*"
-            />
-          </div>
+            <div className="form-group mb-3">
+              <label for="imageUrl">Imagem</label>
+              <br />
+              <input
+                type="file"
+                className="form-control-file"
+                id="imageUrl"
+                accept="image/*"
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
-      </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className="accessDeny">
+          <h2>Não tem acesso a essa página!</h2>
+        </div>
+      )}
     </div>
   );
 }
