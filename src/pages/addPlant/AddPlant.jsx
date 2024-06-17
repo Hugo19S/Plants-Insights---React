@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./../../styles/components/addPlant.sass";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import PostPlant from "../../API/PostPlant";
+import axios from "axios";
+//import PostPlant from "../../API/PostPlant";
 
 function validateForm() {
   //valida os campos do formulario
@@ -44,7 +44,7 @@ function validateForm() {
   return true;
 }
 
-function submitForm(event, navigate) {
+async function submitForm(event) {
   event.preventDefault();
 
   const elements = event.target.elements;
@@ -66,16 +66,31 @@ function submitForm(event, navigate) {
       cancelButtonColor: "#d33",
       cancelButtonText: "Cancelar",
       confirmButtonText: "Sim, gravar!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        PostPlant(formData); // guarda os dados no api
+        //####################################
+        const formDataImage = new FormData();
+        formDataImage.append('image', event.target[11].files[0]);
+
+        try {
+          const response = await axios.post('http://localhost:3032/image', formDataImage, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          //console.log(response.data);
+        } 
+        catch (error) {
+          console.error('Erro ao fazer upload da imagem:', error);
+        }
+        //####################################
         Swal.fire({
           title: "Dados guardados!",
           text: "Dados guardados com sucesso!",
           icon: "success",
-        }) /*.then(() => {
-          navigate("/");
-        })*/;
+        }).then(() => {
+          //window.history.back();
+        });
       }
     });
   } else {
@@ -88,7 +103,6 @@ function submitForm(event, navigate) {
 }
 
 function AddPlant() {
-  const navigate = useNavigate();
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
@@ -106,7 +120,7 @@ function AddPlant() {
           <h2 className="text-center">Adicionar planta</h2>
 
           <form
-            onSubmit={(event) => submitForm(event, navigate)}
+            onSubmit={(event) => submitForm(event)}
             id="plantForm"
           >
             <div className="form-group mb-3">
@@ -191,6 +205,7 @@ function AddPlant() {
       ) : (
         <div className="accessDeny">
           <h2>Não tem acesso a essa página!</h2>
+          <p>Para aceder a essa pagina, por favor faça o <a href="/login">login</a>.</p>
         </div>
       )}
     </div>

@@ -19,8 +19,8 @@ const Cabecalho = () => {
     // Remove as informações do usuário do localStorage
     localStorage.removeItem("sessionUser");
     setUsername(null);
-    // Redireciona para a página de login
-    navigate("/");
+    // Atualiza a página
+    window.location.reload();
   };
 
   return (

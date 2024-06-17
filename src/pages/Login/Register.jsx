@@ -69,15 +69,22 @@ function Register() {
         }),
       })
         .then((response) => response.json())
-        .then(console.log("accc"));
-
-      Swal.fire({
-        title: "Sucesso",
-        text: "A sua conta foi criado com sucesso!",
-        icon: "success",
-      });
-
-      navigate("/login");
+        .then(() => {
+          Swal.fire({
+            title: "Sucesso",
+            text: "A sua conta foi criada com sucesso!",
+            icon: "success",
+          }).then(() => {
+            window.history.back(); // Volta para a página anterior
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            title: "Erro",
+            text: "Ocorreu um erro ao criar a conta. Por favor, tente novamente.",
+            icon: "error",
+          });
+        });
     }
   };
 

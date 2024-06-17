@@ -60,7 +60,7 @@ function Login() {
         if (isValid) {
           fillInFilds.innerHTML = "";
           localStorage.setItem('sessionUser', username);
-          navigate("/");
+          window.history.back(); // Volta para a página anterior
         } else {
           fillInFilds.innerHTML = "Credenciais errados! Tenta novamente.";
         }
