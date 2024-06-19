@@ -25,7 +25,7 @@ let nameFile = "";
 // Configuração do armazenamento de arquivos com Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../public/images'); // Define o diretório onde os arquivos serão salvos
+    cb(null, 'public/images'); // Define o diretório onde os arquivos serão salvos
   },
   filename: function (req, file, cb) {
     const extendFile = file.originalname.split('.')[1];
@@ -45,7 +45,7 @@ app.post('/image', upload.single('image'), (req, res) => {
     return res.status(200).send({
       error: false,
       message: 'File uploaded successfully',
-      path: `public/images/${req.file.filename}`
+      path: `/images/${req.file.filename}`
     });
   } else {
     return res.status(400).send({

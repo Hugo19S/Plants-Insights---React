@@ -1,17 +1,23 @@
 import React from "react";
 import "/src/styles/components/homepage.sass";
+import { Link } from 'react-router-dom';
 
 function PlantCard(props) {
+
   return (
     <div className="card_plant">
-      <img src="src\images\1000_F.jpg" alt="Imagem da receita" />
+      <img src={props.plant.imageUrl} alt={props.plant.plantName} />
       <div className="plant_info">
-        <h5 className="card-title">{props.plant.plantName}</h5><br />
-        <span className="card-date">Cor: {props.plant.flowerColor}</span><br />
-        <span className="card-participants">Nutrientes: {props.plant.foodNutrients}</span><br />
-        <span className="card-participants">Crescimento: {props.plant.growthHabits}</span><br />
-        <span className="card-participants">Rega: {props.plant.waterRequirements}</span><br />
-        <a href="/details" className="btn btn-primary">Saber mais</a>
+        <h5 className="card-title">{props.plant.plantName}</h5>
+        <span className="card-date">Cor: {props.plant.flowerColor}</span>
+        <span className="card-participants">Nutrientes: {props.plant.foodNutrients}</span>
+        <span className="card-participants">Crescimento: {props.plant.growthHabits}</span>
+        <span className="card-participants">Rega: {props.plant.waterRequirements}</span>
+        <Link
+          to={`/${props.plant._id}`} state= { props.plant } // Passa todos os dados da planta via estado
+          className="btn btn-primary moreInfo">
+          Saber mais
+      </Link>
       </div>
     </div>
   );

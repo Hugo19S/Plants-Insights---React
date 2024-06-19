@@ -1,10 +1,27 @@
 {
   "users": [
     {
-      "id": "8fed",
+      "id": "3dd7",
       "username": "root",
       "email": "root@gmail.com",
-      "password": "root"
+      "password": "123"
+    }
+  ],
+  "plants": [
+    {
+      "id": "61e9",
+      "botanicalName": "test45",
+      "plantName": "test45",
+      "description": "test45",
+      "flowerColor": "test45",
+      "foodNutrients": "test45",
+      "nativeRegion": "test45",
+      "growthHabits": "test45",
+      "waterRequirements": "vtest45",
+      "companionPlants": "[vtest45]",
+      "bloomingTimes": "test45",
+      "plantHeight": "test45",
+      "imageUrl": "/images/1718821374919_download.jpg"
     }
   ]
 }

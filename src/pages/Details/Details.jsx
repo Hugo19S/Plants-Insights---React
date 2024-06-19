@@ -1,66 +1,84 @@
 import React from "react";
 import "/src/styles/components/details.sass";
+import { useLocation, useParams } from "react-router-dom";
+
+function removeCharacter(str, charToRemove) {
+  const regex = new RegExp(charToRemove, 'g');
+  return str.replace(regex, '');
+}
+
 
 function Details() {
+  const location = useLocation(); // Obtém o estado da navegação
+  const plant = location.state; // Acessa os dados da planta
+  var name = removeCharacter(plant.companionPlants.substring(1, plant.companionPlants.length-1), "\"")
+  //name = name
+
   return (
     <div className="detailsContainer">
       <h2>Detalhes</h2>
       <div className="detailsContent">
         <div className="image_div_details">
-          <img src="src\images\1000_F.jpg" alt="" />
+          <img src={plant.imageUrl} alt={plant.plantName} />
         </div>
         <div className="compartmentData">
-          <table class="table">
+          <table className="table">
             <tbody>
               <tr>
                 <th scope="row">Nome:</th>
-                <td>Borago</td>
+                <td>{plant.plantName}</td>
               </tr>
               <tr>
-                <th scope="row">Nome Ciêntifico:</th>
-                <td>Borago officinalis</td>
+                <th scope="row">Nome botânico:</th>
+                <td>{plant.botanicalName}</td>
               </tr>
               <tr>
                 <th scope="row">Cor da flor:</th>
-                <td>Azul</td>
+                <td>{plant.flowerColor}</td>
               </tr>
               <tr>
                 <th scope="row">Nutrientes alimentares:</th>
-                <td>Polén</td>
+                <td>{plant.foodNutrients}</td>
               </tr>
               <tr>
                 <th scope="row">Crescimento:</th>
-                <td>Anual</td>
+                <td>{plant.growthHabits}</td>
               </tr>
               <tr>
                 <th scope="row">Necessidade de água:</th>
-                <td>Pouco</td>
+                <td>{plant.waterRequirements}</td>
               </tr>
               <tr>
                 <th scope="row">Região nativa:</th>
-                <td>Mediterânio</td>
+                <td>{plant.nativeRegion}</td>
               </tr>
               <tr>
                 <th scope="row">Plantas companheiras:</th>
-                <td>Tomate</td>
+                <td>{name}</td>
               </tr>
               <tr>
                 <th scope="row">Tempo de floração:</th>
-                <td>Verão</td>
+                <td>{plant.bloomingTimes}</td>
               </tr>
               <tr>
                 <th scope="row">Altura da planta:</th>
-                <td>"1 a 3 pés"</td>
+                <td>{plant.plantHeight}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <div class="mb-3">
-            <label for="description" class="plant-description">Descrição</label>
-            <textarea class="form-control textareaDetails" id="description" rows="3">A borragem é uma erva anual com folhas peludas e flores azuis em forma de estrela.</textarea>
-        </div>
+      <div className="mb-3">
+        <label htmlFor="description" className="plant-description">
+          Descrição
+        </label>
+        <textarea
+          className="form-control textareaDetails"
+          id="description"
+          rows="3"
+          defaultValue={plant.description}/>
+      </div>
     </div>
   );
 }

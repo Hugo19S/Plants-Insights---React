@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./../../styles/components/addPlant.sass";
 import Swal from "sweetalert2";
 import axios from "axios";
-//import PostPlant from "../../API/PostPlant";
+import PostPlant from "../../API/PostPlant";
 
 function validateForm() {
   //valida os campos do formulario
@@ -15,7 +15,7 @@ function validateForm() {
   });
 
   // Adicione suas regras de validação aqui
-  var formData = [
+  var formElements = [
     document.getElementById("botanicalName"),
     document.getElementById("plantName"),
     document.getElementById("flowerColor"),
@@ -30,9 +30,9 @@ function validateForm() {
     document.getElementById("imageUrl"),
   ];
 
-  for (let i = 0; i < formData.length; i++) {
-    if (formData[i].value.trim() === "") {
-      formData[i].classList.add("invalidForm");
+  for (let i = 0; i < formElements.length; i++) {
+    if (formElements[i].value.trim() === "") {
+      formElements[i].classList.add("invalidForm");
     }
   }
 
@@ -68,28 +68,33 @@ async function submitForm(event) {
       confirmButtonText: "Sim, gravar!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        //####################################
+
         const formDataImage = new FormData();
-        formDataImage.append('image', event.target[11].files[0]);
+        formDataImage.append("image", event.target[11].files[0]);
 
         try {
-          const response = await axios.post('http://localhost:3032/image', formDataImage, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-          //console.log(response.data);
+          const response = await axios.post(
+            "http://localhost:3032/image",
+            formDataImage,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+
+          formData["imageUrl"] = response.data.path;
+          await PostPlant(formData);
         } 
         catch (error) {
-          console.error('Erro ao fazer upload da imagem:', error);
+          console.error("Erro ao fazer upload da imagem:", error);
         }
-        //####################################
         Swal.fire({
           title: "Dados guardados!",
           text: "Dados guardados com sucesso!",
           icon: "success",
         }).then(() => {
-          //window.history.back();
+          window.history.back();
         });
       }
     });
@@ -119,42 +124,39 @@ function AddPlant() {
         <div className="add-plant col-md-6">
           <h2 className="text-center">Adicionar planta</h2>
 
-          <form
-            onSubmit={(event) => submitForm(event)}
-            id="plantForm"
-          >
+          <form onSubmit={(event) => submitForm(event)} id="plantForm">
             <div className="form-group mb-3">
-              <label for="botanicalName">Nome botânico</label>
+              <label htmlFor="botanicalName">Nome botânico</label>
               <input type="text" className="form-control" id="botanicalName" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="plantName">Nome da planta</label>
+              <label htmlFor="plantName">Nome da planta</label>
               <input type="text" className="form-control" id="plantName" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="flowerColor">Cor da flor</label>
+              <label htmlFor="flowerColor">Cor da flor</label>
               <input type="text" className="form-control" id="flowerColor" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="foodNutrients">Nutrientes alimentares</label>
+              <label htmlFor="foodNutrients">Nutrientes alimentares</label>
               <input type="text" className="form-control" id="foodNutrients" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="nativeRegion">Região nativa</label>
+              <label htmlFor="nativeRegion">Região nativa</label>
               <input type="text" className="form-control" id="nativeRegion" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="growthHabits">Crescimento</label>
+              <label htmlFor="growthHabits">Crescimento</label>
               <input type="text" className="form-control" id="growthHabits" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="waterRequirements">Necessidades de água</label>
+              <label htmlFor="waterRequirements">Necessidades de água</label>
               <input
                 type="text"
                 className="form-control"
@@ -163,7 +165,7 @@ function AddPlant() {
             </div>
 
             <div className="form-group mb-3">
-              <label for="companionPlants">Plantas de companhia</label>
+              <label htmlFor="companionPlants">Plantas de companhia</label>
               <input
                 type="text"
                 className="form-control"
@@ -172,22 +174,22 @@ function AddPlant() {
             </div>
 
             <div className="form-group mb-3">
-              <label for="bloomingTimes">Tempos de floração</label>
+              <label htmlFor="bloomingTimes">Tempos de floração</label>
               <input type="text" className="form-control" id="bloomingTimes" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="plantHeight">Altura da planta</label>
+              <label htmlFor="plantHeight">Altura da planta</label>
               <input type="text" className="form-control" id="plantHeight" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="description">Descrição</label>
+              <label htmlFor="description">Descrição</label>
               <textarea rows="3" className="form-control" id="description" />
             </div>
 
             <div className="form-group mb-3">
-              <label for="imageUrl">Imagem</label>
+              <label htmlFor="imageUrl">Imagem</label>
               <br />
               <input
                 type="file"
@@ -205,7 +207,10 @@ function AddPlant() {
       ) : (
         <div className="accessDeny">
           <h2>Não tem acesso a essa página!</h2>
-          <p>Para aceder a essa pagina, por favor faça o <a href="/login">login</a>.</p>
+          <p>
+            Para aceder a essa pagina, por favor faça o{" "}
+            <a href="/login">login</a>.
+          </p>
         </div>
       )}
     </div>

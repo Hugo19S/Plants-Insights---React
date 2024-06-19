@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "/src/styles/components/homepage.sass";
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Search from "../Search/Search";
 
 const Home = () => {
-  //const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //const formData = new FormData(e.currentTarget);
-    //const valueForm = formData.get("searchValue");
-    //navigate("/search", { state: { searchValue: valueForm } });
-    //setSearchValue(valueForm);
-  };
 
   return (
     <div>
