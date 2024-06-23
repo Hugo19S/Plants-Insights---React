@@ -5,6 +5,12 @@
       "username": "root",
       "email": "root@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "4534",
+      "username": "abdoulah",
+      "email": "abdoulah@gmail.com",
+      "password": "123"
     }
   ],
   "plants": [

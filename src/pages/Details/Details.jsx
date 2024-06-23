@@ -69,7 +69,7 @@ function Details() {
         </div>
       </div>
 
-      <div className="mb-3">
+      <div>
         <label htmlFor="description" className="plant-description">
           Descrição
         </label>

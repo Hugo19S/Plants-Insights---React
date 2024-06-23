@@ -1,7 +1,9 @@
 @use '/src/styles/variables.sass'
 
+//////////////// Cabeçalho ////////////////
+
 .Cabecalho
-    min-height: 15vh !important
+    min-height: 100px !important
     display: flex
     align-items: center
     padding-right: 20px
@@ -11,27 +13,324 @@
 .logo-header
     display: flex
     align-items: center
-    
-    
+
 .logo-header h1
     font-size: 45px
     font-family: variables.$font-logo
     color: #07446a
+    margin: 0
 
 .imageLogo
-    height: 60px
+    height: 80px
     margin-right: 5px
 
 .haderLink
     display: flex
     gap: 20px
     font-size: 20px
+    align-items: center
 
-.haderLink a, logoutLink
+.haderLink a, .logoutLink
     color: #7e7e7e
 
 .logoutLink
     cursor: pointer
 
-.haderLink a:hover
+.haderLink a:hover, .iconAccount:hover
     color: variables.$theme-color
+
+.iconAccount
+    color: #7e7e7e
+    font-size: 28px
+
+.menu
+    position: relative
+    display: inline-block
+    cursor: pointer
+
+.list
+    margin: 0
+    margin-top: 5px
+    background: #474747
+    padding-left: 10px
+    padding-right: 110px
+    border-radius: 5px
+    position: absolute
+    right: 0
+    font: 14px Roboto, sans-serif
+    white-space: nowrap
+
+    &.hidden
+        visibility: hidden
+        opacity: 0
+
+    &:before
+        content: ''
+        width: .75em
+        height: .75em
+        background: inherit
+        position: absolute
+        top: -.375em
+        right: 9px
+        transform: rotate(45deg)
+
+.memu-option
+    list-style: none
+    padding: 5px 0
+    position: relative
+    cursor: pointer
+    color: #E6E6E6
+    font-family: Roboto, sans-serif
+    background: inherit
+    max-width: 0
+    &:before
+        position: absolute
+        top: calc(5% + 8px)
+        left: 8px
+
+    &:hover
+        background: rgba(#FFF, .08)
+
+//////////////// Rodapé ////////////////
+
+.rodaPe
+    background-color: #212121
+    height: auto
+    padding: 20px
+
+.firstDiv
+    display: flex
+    height: auto
+    width: auto
+    color: #fff
+    gap: 10px
+    justify-content: space-around
+
+firstDiv > *
+        flex: 1
+
+.aplication
+    display: flex
+
+#imageLogo
+    margin-right: 15px
+
+.logo h2,
+.estamosEm
+    font-size: 35px
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif
+
+.logo h2
+    margin-bottom: 0
+    margin-top: 0
+
+.logo span
+    font-size: 30px
+
+.group
+    display: grid
+    grid-template-columns: repeat(2, auto)
+    gap: 20px
+    height: auto
+    width: auto
+
+.plataforms
+    display: flex
+    height: 45px
+    width: 150px
+    background-color: black
+    color: white
+    gap: 10px
+    align-items: center
+    padding: 2px
+    padding-left: 5px
+    border-radius: 5px
+
+.icons
+    height: 35px
+
+.AppStory h3
+    margin: 0
+    padding: 0
+    font-size: 20px
+
+.estamosEm
+    margin-bottom: 10px
+
+.iconSocial
+    display: flex
+    font-size: 40px
+    justify-content: space-between
+
+.logo
+    display: flex
+    flex-direction: column
+
+//////////////// Tamanho da tela ////////////////
+
+@media (max-width: 900px)
+    .Cabecalho
+        min-height: 100px !important
+
+    .logo-header h1
+        font-size: 35px
+
+    .imageLogo
+        height: 70px
+
+    //////
+
+    .logo h2, .estamosEm
+        font-size: 25px
+
+    .logo span
+        font-size: 16px
+
+    .iconSocial
+        font-size: 30px
+
+    .plataforms
+        width: 130px
+        height: 35px
+
+    .AppStory h3
+        font-size: 15px
+
+    .icons
+        height: 25px
+    
+    .group
+        gap: 10px
+
+@media (max-width: 750px)
+    .Cabecalho
+        min-height: 70px !important
+
+    .logo-header h1
+        font-size: 25px
+
+    .imageLogo
+        height: 50px
+
+    .haderLink > a
+        font-size: 18px
+
+    .iconAccount
+        font-size: 23px
+
+    .haderLink
+        gap: 12px
+
+    //////
+
+    .logo h2, .estamosEm
+        font-size: 15px
+
+    .logo span
+        font-size: 12px
+
+    .iconSocial
+        font-size: 20px
+
+    .plataforms
+        width: 116px
+        height: 32px
+
+    .AppStory h3
+        font-size: 14px
+
+    .icons
+        height: 20px
+
+    .group span
+        font-size: 14px
+
+@media (max-width: 600px)
+    .logo h2, .estamosEm
+        font-size: 12px
+
+    .logo span
+        font-size: 10px
+
+    .iconSocial
+        font-size: 15px
+
+    .plataforms
+        width: 100px
+        height: 28px
+
+    .AppStory h3
+        font-size: 12px
+
+    .icons
+        height: 15px
+
+    .group
+        gap: 6px
+
+    .group span
+        font-size: 11px
+
+@media (max-width: 500px)
+    .Cabecalho
+        min-height: 65px !important
+
+    .imageLogo
+        height: 40px
+
+    .logo-header h1
+        font-size: 20px
+
+    .haderLink > a
+        font-size: 15px
+
+    .iconAccount
+        font-size: 20px
+
+    .firstDiv
+        display: grid
+        grid-template-columns: auto auto
+        grid-template-rows: auto auto
+        justify-content: space-evenly
+        gap: 10px
+        grid-template-areas: "item1 item3" 
+
+    .group1
+        grid-area: item1
+        margin-top: 7px
+    
+    .group2
+        grid-area: item1
+        margin-top: 64px
+
+    .group
+        grid-area: item3
+        display: grid
+        grid-template-columns: repeat(1, auto)
+    
+
+
+@media (max-width: 429px)
+    .inserirPlanta
+        position: relative
+
+    .inserirPlanta::before
+        display: block
+
+    .haderLink > a
+        font-size: 13px
+    
+    .imageLogo
+        height: 35px
+
+    .logo-header h1
+        font-size: 18px
+
+@media (max-width: 390px)
+    .haderLink
+        gap: 10px
+
+    .imageLogo
+        height: 30px
+
+    

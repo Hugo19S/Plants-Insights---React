@@ -1,6 +1,7 @@
 import { FaUser, FaLock } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "/src/styles/components/login.sass";
 
 function validateForm(fillInFilds) {
   var formElements = document.querySelectorAll("#LoginForm .form-control");
@@ -48,7 +49,6 @@ const verifyCredential = async (username, password) => {
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();

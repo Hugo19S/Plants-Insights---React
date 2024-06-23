@@ -6,9 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "/src/styles/main.sass";
 import HomePage from "./pages/HomePage/HomePage";
 import AddPlant from "./pages/addPlant/AddPlant";
-import FirstFive from "/src/pages/FirstFive/FirstFive";
-import AllSearch from "/src/pages/Search/AllSearch";
-import Search from "/src/pages/Search/Search.jsx";
+import Search from "/src/pages/Search/Search";
 import Details from "/src/pages/Details/Details.jsx";
 import NotFound from "/src/pages/NotFound/Notfound.jsx";
 import Login from "./pages/Login/Login.jsx";
@@ -28,15 +26,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <FirstFive />,
+            element: <Search search="lastSixElements" />,
           },
           {
             path: "/allPlants",
-            element: <AllSearch />,
+            element: <Search search="allPlants" />,
           },
           {
             path: "/search",
-            element: <Search />,
+            element: <Search search="searchTerm" />,
           },
           {
             path: "/:id",

@@ -8,11 +8,11 @@ function PlantCard(props) {
     <div className="card_plant">
       <img src={props.plant.imageUrl} alt={props.plant.plantName} />
       <div className="plant_info">
-        <h5 className="card-title">{props.plant.plantName}</h5>
-        <span className="card-date">Cor: {props.plant.flowerColor}</span>
-        <span className="card-participants">Nutrientes: {props.plant.foodNutrients}</span>
-        <span className="card-participants">Crescimento: {props.plant.growthHabits}</span>
-        <span className="card-participants">Rega: {props.plant.waterRequirements}</span>
+        <h5 className="card-name">{props.plant.plantName}</h5>
+        <div className="card-infoPlant">Cor: {props.plant.flowerColor}</div>
+        <span className="card-infoPlant">Nutrientes: {props.plant.foodNutrients}</span>
+        <span className="card-infoPlant">Crescimento: {props.plant.growthHabits}</span>
+        <span className="card-infoPlant">Rega: {props.plant.waterRequirements}</span>
         <Link
           to={`/${props.plant._id}`} state= { props.plant } // Passa todos os dados da planta via estado
           className="btn btn-primary moreInfo">

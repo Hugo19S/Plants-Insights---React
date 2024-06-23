@@ -1,4 +1,4 @@
-import "./../../styles/components/Aplicacao.sass";
+import "./../../styles/components/cabecalho.sass";
 import imageLogo from "./../../images/imageLogo.png";
 import imageApple from "./../../images/apple_icon.png";
 import imagePaly from "./../../images/playstore_icon.png";
@@ -15,9 +15,9 @@ function RodaPe() {
   return (
     <div className="rodaPe">
       <div className="firstDiv">
-      <div>
+      <div className="group1">
         <div className="aplication">
-          <img src={imageLogo} alt="imageLogo" className="imageLogo" />
+          <img src={imageLogo} alt="imageLogo" className="imageLogo" id="imageLogo" />
           <div className="logo">
             <h2>APP Plants Info</h2>
             <span>Cuide da natureza</span>
@@ -25,7 +25,7 @@ function RodaPe() {
         </div>
         
       </div>
-      <div>
+      <div className="group2">
         <div>
           <h3 className="estamosEm">Estamos onde tu estás.</h3>
           <div className="iconSocial">

@@ -16,9 +16,9 @@
 
 #search-container
     background-image: url("src/images/green-tiny-plant.png")
-    background-size: cover
-    background-position: center
-    height: 40vh
+    background-position: centers
+    background-size: 100% 100%
+    background-repeat: no-repeat
     padding: 50px
     text-align: center
 
@@ -32,7 +32,7 @@
     margin: 0 auto
 
 .outlet_homePage
-    padding: 50px
+    padding: 30px
 
 #recipe-container h2
     margin-bottom: 10px
@@ -48,20 +48,15 @@
     padding: 0
     margin: 5px
 
-#recipe-container img
-    max-height: 180px
-    min-height: 180px
-    width: 100%
-    border-top-left-radius: 10px
-    border-top-right-radius: 10px
-
 .plant_container
     display: grid
-    grid-template-columns: repeat(5, 1fr)
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
     gap: 25px
+    justify-items: center
 
 .card_plant
-    max-width: 300px
+    max-width: 230px
+    min-width: 175px
     height: 380px
     box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.2), 5px 5px 5px rgba(0, 0, 0, 0.2)
     border-radius: 10px
@@ -74,6 +69,13 @@
     flex-direction: column
     justify-content: space-between
     height: 100%
+
+#recipe-container img
+    max-height: 180px
+    min-height: 180px
+    width: 100%
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
 
 .loading
     display: flex
@@ -96,3 +98,116 @@
 
     100%
         transform: rotate(360deg)
+
+.card-infoPlant
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    max-width: 100%
+
+.card-name
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+.card-name
+    font-size: 1.10rem
+    font-weight: 600
+
+/* Media query para telas menores */
+@media (max-width: 900px)
+    #search-container h1
+        font-size: 35px
+
+
+@media (max-width: 750px)
+    .card_plant
+        max-width: 215px
+
+    #search-container h1
+        font-size: 25px
+
+    #search-container
+        padding: 30px
+
+    #recipe-container h2
+        font-size: 23px
+
+    #recipe-container p, .card-infoPlant
+        font-size: 15px
+
+    .card-name
+        font-size: 1.0rem
+
+@media ( max-width: 710px )
+    .plant_container
+        grid-template-columns: repeat(auto-fill, minmax(196px, 1fr))
+
+@media ( max-width: 697px )
+    .card_plant
+        max-width: 250px
+
+@media ( max-width: 600px )
+
+    #search-container form
+        width: 70%
+
+    le.tab
+        background: unset
+        box-shadow: unset
+
+        & thead
+            display: none
+
+        & tbody
+            display: flex
+            flex-wrap: wrap
+            justify-content: space-between
+
+        & tbody tr
+            margin: 0 5px 20px 0
+            display: block
+            background: ghostwhite
+            border-radius: 10px
+            box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.2), 5px 5px 5px rgba(0, 0, 0, 0.2)
+            box-sizing: border-box
+            overflow: hidden
+            width: calc(50% - 10px)
+
+        & tbody tr td:before
+            content: attr(data-title)
+            position: absolute
+            left: 10px
+            display: block
+
+@media ( max-width: 550px )
+    .card_plant
+        max-width: 215px
+
+@media (max-width: 500px)
+    #search-container h1
+        font-size: 22px
+
+    #recipe-container p, #recipe-container a
+        font-size: 13px
+
+    #recipe-container h2
+        font-size: 20px
+
+@media (max-width: 477px)
+    .plant_container
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))
+
+    .card_plant
+        max-width: 192px
+
+@media (max-width: 444px)
+    .card_plant
+        max-width: 260px
+
+@media (max-width: 429px)
+    #search-container h1
+        font-size: 18px
+
+    #recipe-container h2
+        font-size: 18px

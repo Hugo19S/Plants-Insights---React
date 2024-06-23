@@ -11,9 +11,6 @@
     background: ghostwhite
     box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.2), 5px 5px 5px rgba(0, 0, 0, 0.2)
     flex: 1 1 0
-    display: flex
-    justify-content: center
-    align-items: center
 
 .image_div_details img
     border-radius: 10px
@@ -52,3 +49,40 @@
 
 #description
     color: #626161
+
+
+@media ( max-width: 900px )
+    .detailsContent
+        display: inline
+        max-height: none
+        height: 100%
+
+    .image_div_details
+        margin-bottom: 20px
+
+@media ( max-width: 600px )
+    .compartmentData
+        background: none
+        box-shadow: none
+    .table
+        background: unset
+        box-shadow: unset
+
+        & thead
+            display: none
+
+        & tbody
+            display: flex
+            flex-wrap: wrap
+            justify-content: space-between
+
+        & tbody tr
+            margin: 0 5px 20px 0
+            display: block
+            border-radius: 10px
+            box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.2), 5px 5px 5px rgba(0, 0, 0, 0.2)
+            box-sizing: border-box
+            overflow: hidden
+            width: 100%
+        
+    

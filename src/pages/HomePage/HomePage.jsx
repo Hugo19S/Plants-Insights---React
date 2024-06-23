@@ -7,12 +7,13 @@ const Home = () => {
 
   return (
     <div>
-      <div id="search-container" className="col-md-12">
+      <div id="search-container">
         <h1>Busque uma planta</h1>
         <form action="/search" >
           <input
             type="text"
             name="searchValue"
+            id="formulario"
             className="form-control"
             placeholder="Procurar..."
             required
